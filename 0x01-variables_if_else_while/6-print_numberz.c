@@ -1,20 +1,16 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
 
 /**
  * main - Entry point
- *
- * Return: Always 0 (Success)
+ * Description: It prints the numbers from 0-9
+ * Return: Always 0 (success)
  */
 int main(void)
 {
-	char c;
+	int num;
 
-	for (c = '0'; c <= '9'; c++)
-	{
-		putchar(c);
-	}
-	printf("\n");
+	for (num = 48; num <= 57; num++)
+		putchar(num);
+	putchar('\n');
 	return (0);
 }
