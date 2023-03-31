@@ -1,49 +1,27 @@
 #include "main.h"
+
 /**
- *print_number - prints an integer.
- *only using the putchar function.
- *noarrays and pointers.
- *@n: integer to be printed.
- *
- *Return: void.
+ * print_number - Prints an integer using only _putchar
+ * @n: The integer to print
  */
 void print_number(int n)
 {
-	int i, j, digit, digits, power;
-	unsigned int temp, numchar, number;
+	unsigned int num;
 
-	digit = 0;
 	if (n < 0)
 	{
 		_putchar('-');
-		temp = -n;
+		num = -n;
 	}
 	else
 	{
-		temp = n;
+		num = n;
 	}
 
-	number = temp;
+	if (num / 10 != 0)
+	{
+		print_number(num / 10);
+	}
 
-	while (number >= 10)
-	{
-		number = number / 10;
-		digit++;
-	}
-	digits = digit + 1;
-	power = 1;
-	i = 1;
-
-	while (i < digits)
-	{
-		power = power * 10;
-		i++;
-	}
-	j = power;
-	while (j >= 1)
-	{
-		numchar = (temp / j) % 10;
-		_putchar(numchar + '0');
-		j = j / 10;
-	}
+	_putchar((num % 10) + '0');
 }
