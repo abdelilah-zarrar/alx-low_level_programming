@@ -29,8 +29,7 @@ for (i = 0; i < height; i++)
 grid[i] = malloc(width * sizeof(int));
 if (grid[i] == NULL)
 {
-/* code */
-	
+/* code */	
 for (j = 0; j < i; j++)
 free(grid[j]);
 free(grid);
