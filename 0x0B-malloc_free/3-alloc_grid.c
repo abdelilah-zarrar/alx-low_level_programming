@@ -6,6 +6,7 @@
 /* Return: pointer to 2D array or NULL if failure */
 int **alloc_grid(int width, int height)
 {
+// code goes here
 int **grid;
 int i, j;
 
