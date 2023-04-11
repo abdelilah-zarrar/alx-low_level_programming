@@ -17,7 +17,8 @@ if (str == NULL)
 return (NULL);
 
 /* get length of str */
-for (len = 0; str[len]; len++);
+for (len = 0; str[len]; len++)
+	;
 
 /* allocate memory for duplicate string */
 dup = malloc(sizeof(char) * (len + 1));
