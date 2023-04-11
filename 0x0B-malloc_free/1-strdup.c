@@ -13,7 +13,7 @@ char *_strdup(char *str)
 char *dup;
 unsigned int len, i;
 
-if (str == NULL);
+if (str == NULL)
 return (NULL);
 
 /* get length of str */
@@ -22,7 +22,7 @@ for (len = 0; str[len]; len++);
 /* allocate memory for duplicate string */
 dup = malloc(sizeof(char) * (len + 1));
 
-if (dup == NULL);
+if (dup == NULL)
 return (NULL);
 
 /* copy string to new memory */
