@@ -35,7 +35,7 @@ static int word_count(char *str)
 char **strtow(char *str)
 {
     char **words;
-    int count, word_len, i;
+    int count, word_len, i, j;
     char *word;
 
     if (str == NULL || *str == '\0')
@@ -67,7 +67,7 @@ char **strtow(char *str)
                 return (NULL);
             }
 
-            for (int j = 0; j < word_len; j++)
+            for (j = 0; j < word_len; j++)
                 word[j] = str[j];
             word[word_len] = '\0';
             words[i++] = word;
