@@ -1,60 +1,80 @@
 #include <stdlib.h>
+#include "main.h"
 
-int is_space(char c)
+/**
+ * word_count - count the number of words in a string
+ * @str: the string to count words in
+ *
+ * Return: the number of words in the string
+ */
+static int word_count(char *str)
 {
-    return (c == ' ' || c == '\t' || c == '\n');
-}
+    int count = 0, in_word = 0;
 
-int count_words(char *str)
-{
-    int count = 0, i = 0;
-    while (str[i] != '\0')
+    while (*str)
     {
-        while (is_space(str[i])) i++;
-        if (str[i] != '\0')
+        if (*str == ' ' || *str == '\t' || *str == '\n')
+            in_word = 0;
+        else if (in_word == 0)
         {
+            in_word = 1;
             count++;
-            while (!is_space(str[i]) && str[i] != '\0') i++;
         }
+        str++;
     }
-    return count;
+
+    return (count);
 }
 
-char *copy_word(char *str, int start, int end)
-{
-    char *word;
-    int i;
-    word = malloc(end - start + 2);
-    if (word == NULL) return NULL;
-    for (i = start; i <= end; i++)
-        word[i - start] = str[i];
-    word[i - start] = '\0';
-    return word;
-}
-
+/**
+ * strtow - split a string into words
+ * @str: the string to split
+ *
+ * Return: a pointer to an array of strings (words), or NULL on failure
+ */
 char **strtow(char *str)
 {
-    int i, j, k, n, count;
     char **words;
-    if (str == NULL || str[0] == '\0') return NULL;
-    count = count_words(str);
+    int count, word_len, i;
+    char *word;
+
+    if (str == NULL || *str == '\0')
+        return (NULL);
+
+    count = word_count(str);
     words = malloc(sizeof(char *) * (count + 1));
-    if (words == NULL) return NULL;
-    for (i = 0, k = 0; i < count; i++)
+    if (words == NULL)
+        return (NULL);
+
+    i = 0;
+    while (*str)
     {
-        while (is_space(str[k])) k++;
-        j = k;
-        while (!is_space(str[j]) && str[j] != '\0') j++;
-        n = j - k;
-        words[i] = copy_word(str, k, j-1);
-        if (words[i] == NULL)
+        if (*str == ' ' || *str == '\t' || *str == '\n')
+            str++;
+        else
         {
-            for (j = 0; j < i; j++) free(words[j]);
-            free(words);
-            return NULL;
+            word_len = 0;
+            while (str[word_len] && str[word_len] != ' '
+                   && str[word_len] != '\t' && str[word_len] != '\n')
+                word_len++;
+
+            word = malloc(sizeof(char) * (word_len + 1));
+            if (word == NULL)
+            {
+                while (--i >= 0)
+                    free(words[i]);
+                free(words);
+                return (NULL);
+            }
+
+            for (int j = 0; j < word_len; j++)
+                word[j] = str[j];
+            word[word_len] = '\0';
+            words[i++] = word;
+            str += word_len;
         }
-        k = j;
     }
-    words[count] = NULL;
-    return words;
+
+    words[i] = NULL;
+    return (words);
 }
