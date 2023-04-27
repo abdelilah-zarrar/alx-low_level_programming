@@ -15,8 +15,8 @@
  */
 typedef struct listint_s
 {
-    int n;
-    struct listint_s *next;
+int n;
+struct listint_s *next;
 } listint_t;
 
 /**
@@ -29,9 +29,9 @@ typedef struct listint_s
  */
 typedef struct list_s
 {
-    char *str;
-    unsigned int len;
-    struct list_s *next;
+char *str;
+unsigned int len;
+struct list_s *next;
 } list_t;
 
 /* function prototypes */
